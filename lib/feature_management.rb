@@ -16,4 +16,8 @@ class FeatureManagement
   def self.proofing_requires_kbv?
     Figaro.env.proofing_kbv == 'true'
   end
+
+  def self.enable_dev_mode?
+    Figaro.env.enable_dev_mode == 'true'
+  end
 end

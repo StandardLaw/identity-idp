@@ -37,6 +37,7 @@ html lang="#{I18n.locale}"
 
   body class="#{Rails.env}-env site sm-bg-light-blue"
     .site-wrap
+      = render 'shared/dev_mode' if FeatureManagement.enable_dev_mode?
       = render 'shared/usa_banner'
       = render 'shared/nav'
       = content_for?(:content) ? yield(:content) : yield
