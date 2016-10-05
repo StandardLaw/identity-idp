@@ -5,6 +5,7 @@ class User < ActiveRecord::Base
 
   devise :confirmable, :database_authenticatable, :recoverable, :registerable,
          :timeoutable, :trackable, :two_factor_authenticatable, :omniauthable,
+         :zxcvbnable,
          omniauth_providers: [:saml]
 
   enum role: { user: 0, tech: 1, admin: 2 }
@@ -86,5 +87,18 @@ class User < ActiveRecord::Base
 
   def decorate
     UserDecorator.new(self)
+  end
+
+  private
+
+  # used by zxcvbn
+  def weak_words
+    [APP_NAME]
+  end
+
+  # method required by zxcvbn
+  def password_required?
+    confirmable = confirmed? || confirmation_token.present?
+    password.present? && confirmable
   end
 end

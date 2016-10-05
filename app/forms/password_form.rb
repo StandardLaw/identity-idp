@@ -14,9 +14,10 @@ class PasswordForm
 
     self.password = submitted_password
 
-    if valid? && user_valid?
+    if valid? && user_valid? && password_valid?
       @user.password = submitted_password
     else
+      errors.add :password, @user.errors[:password]
       false
     end
   end
@@ -28,5 +29,10 @@ class PasswordForm
   # which is added by Devise via errors.add
   def user_valid?
     @user.errors.empty?
+  end
+
+  def password_valid?
+    @user.password = password
+    @user.valid?
   end
 end

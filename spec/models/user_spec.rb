@@ -17,6 +17,29 @@ describe User do
     end.to change(ActionMailer::Base.deliveries, :count).by(1)
   end
 
+  describe 'password validations' do
+    it 'disallows common words' do
+      user = create(:user)
+      user.password = 'password'
+
+      expect(user.valid?).to eq false
+      expect(user.errors[:password].first).to match('not strong enough')
+    end
+
+    it 'allows long phrases' do
+      user = create(:user)
+      user.password = 'a long password'
+
+      expect(user.valid?).to eq true
+    end
+
+    it 'allows visitors' do
+      user = create(:user, :unconfirmed)
+
+      expect(user.valid?).to eq true
+    end
+  end
+
   describe 'uuid validations' do
     it 'uses a DB constraint to enforce presence' do
       user = create(:user)
