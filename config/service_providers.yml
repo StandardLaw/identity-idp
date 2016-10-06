@@ -62,6 +62,7 @@ development:
     cert: 'sp_rails_demo'
     agency: '18F'
     friendly_name: '18F Test Service Provider'
+    logo: 'uscis.png'
     attribute_bundle:
       - email
 

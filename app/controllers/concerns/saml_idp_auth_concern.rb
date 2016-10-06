@@ -6,6 +6,7 @@ module SamlIdpAuthConcern
     before_action :validate_service_provider, only: :auth
     before_action :verify_authn_context, only: :auth
     before_action :store_saml_request_in_session, only: :auth
+    before_action :set_sp_in_session, only: :auth
     before_action :confirm_two_factor_authenticated, only: :auth
   end
 
@@ -31,6 +32,11 @@ module SamlIdpAuthConcern
   # stores original SAMLRequest in session to continue SAML Authn flow
   def store_saml_request_in_session
     session[:saml_request_url] = request.original_url
+  end
+
+  def set_sp_in_session
+    sp = 'urn:gov:gsa:SAML:2.0.profiles:sp:sso:localhost-rails'
+    session[:sp] = ServiceProvider.new(sp).metadata
   end
 
   def requested_authn_context
