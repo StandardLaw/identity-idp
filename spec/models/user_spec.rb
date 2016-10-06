@@ -35,6 +35,7 @@ describe User do
 
     it 'allows visitors' do
       user = create(:user, :unconfirmed)
+      user.password = 'a long password'
 
       expect(user.valid?).to eq true
     end
