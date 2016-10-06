@@ -37,6 +37,7 @@ engines:
     exclude_paths:
     - 'spec/**/*'
     - 'db/migrate/*'
+    - 'lib/i18n_override.rb'
   rubocop:
     enabled: true
   scss-lint:
