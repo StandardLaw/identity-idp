@@ -107,6 +107,10 @@ describe Users::ConfirmationsController, devise: true do
 
         expect(response).to_not redirect_to phone_setup_url
         expect(response.body).to match('not strong enough')
+        expect(response.status).to eq 200
+
+        user.reload
+        expect(user.confirmed_at).to be_nil
       end
     end
   end

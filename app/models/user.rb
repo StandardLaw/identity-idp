@@ -98,7 +98,6 @@ class User < ActiveRecord::Base
 
   # method required by zxcvbn
   def password_required?
-    confirmable = confirmed? || confirmation_token.present?
-    password.present? && confirmable
+    password.present?
   end
 end

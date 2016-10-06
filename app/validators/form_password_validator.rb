@@ -13,6 +13,7 @@ module FormPasswordValidator
   end
 
   def valid_password
+    return if errors[:password].any?
     temp_user = User.new(password: password)
     return if temp_user.valid?
     errors.add :password, temp_user.errors[:password]

@@ -18,22 +18,14 @@ describe User do
   end
 
   describe 'password validations' do
-    it 'disallows common words' do
-      user = create(:user)
-      user.password = 'password'
-
-      expect(user.valid?).to eq false
-      expect(user.errors[:password].first).to match('not strong enough')
-    end
-
-    it 'allows long phrases' do
+    it 'allows long phrases that contain common words' do
       user = create(:user)
       user.password = 'a long password'
 
       expect(user.valid?).to eq true
     end
 
-    it 'allows visitors' do
+    it 'allows unconfirmed visitors' do
       user = create(:user, :unconfirmed)
       user.password = 'a long password'
 
