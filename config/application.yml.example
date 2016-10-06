@@ -58,7 +58,7 @@ development:
   telephony_disabled: 'true'
   twilio_accounts: '[{"sid":"sid", "auth_token":"token", "number":"9999999999"}]'
   valid_service_providers: '["https://rp1.serviceprovider.com/auth/saml/metadata", "urn:gov:gsa:SAML:2.0.profiles:sp:sso:localhost", "urn:gov:gsa:SAML:2.0.profiles:sp:sso:localhost-rails", "https://dashboard.login.gov"]'
-  enable_dev_mode: 'true'
+  enable_dev_mode: 'false'
 
 production:
   allow_third_party_auth: 'yes'
