@@ -1,7 +1,8 @@
 require 'rails_helper'
 
 describe UpdateUserPasswordForm do
-  let(:user) { User.new(password: 'fancy password') }
+  let(:password) { 'fancy password' }
+  let(:user) { User.new(password: password) }
   subject { UpdateUserPasswordForm.new(user) }
 
   it_behaves_like 'password validation'
