@@ -5,11 +5,6 @@ module Saml
       LOA1_AUTHNCONTEXT_CLASSREF = 'http://idmanagement.gov/ns/assurance/loa/1'.freeze
       LOA3_AUTHNCONTEXT_CLASSREF = 'http://idmanagement.gov/ns/assurance/loa/3'.freeze
       REQUESTED_ATTRIBUTES_CLASSREF = 'http://idmanagement.gov/ns/requested_attributes?ReqAttr='.freeze
-
-      VALID_AUTHNCONTEXTS = [
-        LOA1_AUTHNCONTEXT_CLASSREF,
-        LOA3_AUTHNCONTEXT_CLASSREF
-      ].freeze
     end
   end
 end

@@ -45,3 +45,5 @@ SamlIdp.configure do |config|
     ServiceProvider.new(issuer_or_entity_id).metadata
   end
 end
+
+VALID_AUTHNCONTEXTS = JSON.parse(Figaro.env.valid_authncontexts).freeze

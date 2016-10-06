@@ -12,7 +12,7 @@ module SamlIdpAuthConcern
   private
 
   def verify_authn_context
-    return if Saml::Idp::Constants::VALID_AUTHNCONTEXTS.include?(requested_authn_context)
+    return if VALID_AUTHNCONTEXTS.include?(requested_authn_context)
 
     process_invalid_authn_context
   end

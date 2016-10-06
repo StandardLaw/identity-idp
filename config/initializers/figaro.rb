@@ -4,5 +4,5 @@ Figaro.require_keys(
   'otp_delivery_blocklist_findtime', 'otp_delivery_blocklist_maxretry', 'password_pepper',
   'recovery_code_length', 'requests_per_ip_limit', 'requests_per_ip_period',
   'saml_passphrase', 'secret_key_base', 'session_timeout_in', 'support_email',
-  'twilio_accounts', 'valid_service_providers'
+  'twilio_accounts', 'valid_authncontexts', 'valid_service_providers'
 )
