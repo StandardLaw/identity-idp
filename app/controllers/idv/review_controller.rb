@@ -78,8 +78,6 @@ module Idv
 
     def password
       params.require(:user)[:password]
-    rescue ActionController::ParameterMissing
-      ''
     end
 
     def invalid_password?
