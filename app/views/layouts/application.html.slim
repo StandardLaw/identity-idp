@@ -47,6 +47,9 @@ html lang="#{I18n.locale}"
     #session-timeout-cntnr
     = auto_session_timeout_js
 
+  - if FeatureManagement.enable_dev_mode?
+    == javascript_include_tag 'misc/i18n-mode'
+
   - if Figaro.env.participate_in_dap == 'yes'
     = t('notices.dap_html')
     - dap_source = 'https://dap.digitalgov.gov/Universal-Federated-Analytics-Min.js?agency=GSA'

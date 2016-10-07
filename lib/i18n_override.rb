@@ -18,7 +18,8 @@ I18n.module_eval do
       uri = get_loc_uri(key)
       return '' unless uri
 
-      "<a href=\"#{uri}\" target=\"_blank\" class=\"ml1\">🔗</a>"
+      "<small class=\"i18n-anchor\"><a href=\"#{uri}\" " \
+      "target=\"_blank\" class=\"ml-tiny no-hover-decoration\">🔗</a></small>"
     end
 
     def get_loc_uri(key)
