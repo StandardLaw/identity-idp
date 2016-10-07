@@ -1,0 +1,10 @@
+var start = <%= start %> * 1000;
+var login_warning_msg = "<%= j render('session_timeout/login_message') %>";
+
+function login_warning() {
+  var cntnr = document.getElementById('session-timeout-cntnr');
+
+  cntnr.insertAdjacentHTML('afterbegin', login_warning_msg);
+}
+
+setTimeout(login_warning, start);

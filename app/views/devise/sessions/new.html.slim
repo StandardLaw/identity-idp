@@ -15,3 +15,6 @@ h1.h3.my0 = t('headings.log_in')
     = link_to t('links.user_confirmation'), new_user_confirmation_path, class: 'underline'
     span.px1.silver = '|'
     = link_to t('headings.passwords.forgot'), new_password_path(resource_name), class: 'underline'
+
+#session-timeout-cntnr
+  = auto_login_timeout_js

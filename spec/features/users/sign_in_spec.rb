@@ -123,6 +123,7 @@ feature 'Sign in' do
   context 'signing back in after session timeout length' do
     before do
       ActionController::Base.allow_forgery_protection = true
+      allow(Figaro.env).to receive(:login_timeout_warning_seconds).and_return(1)
     end
 
     after do
@@ -130,18 +131,42 @@ feature 'Sign in' do
       Timecop.return
     end
 
-    it 'successfully signs in the user' do
-      user = sign_in_and_2fa_user
-      click_link(t('links.sign_out'))
+    context 'javascript enabled', js: true do
+      it 'pops up session timeout warning' do
+        user = sign_in_and_2fa_user
+        click_link(t('links.sign_out'))
 
-      Timecop.travel(Devise.timeout_in + 1.minute)
+        Timecop.travel(Devise.timeout_in + 1.minute)
+        find_link(t('forms.buttons.submit.continue')).trigger('click')
 
-      fill_in 'Email', with: user.email
-      fill_in 'Password', with: user.password
-      click_button t('links.sign_in')
+        expect(current_path).to eq root_path
 
-      expect(page).to_not have_content t('errors.invalid_authenticity_token')
-      expect(current_path).to eq user_two_factor_authentication_path
+        fill_in 'Email', with: user.email
+        fill_in 'Password', with: user.password
+        click_button t('links.sign_in')
+
+        expect(page).to_not have_content t('errors.invalid_authenticity_token')
+        expect(current_path).to eq user_two_factor_authentication_path
+      end
+    end
+
+    context 'javascript disabled' do
+      it 'fails to sign in the user, with CSRF error' do
+        user = sign_in_and_2fa_user
+        click_link(t('links.sign_out'))
+
+        Timecop.travel(Devise.timeout_in + 1.minute)
+        expect(page).to_not have_content(t('forms.buttons.submit.continue'))
+
+        expect(current_path).to eq root_path
+
+        fill_in 'Email', with: user.email
+        fill_in 'Password', with: user.password
+        click_button t('links.sign_in')
+
+        expect(page).to have_content t('errors.invalid_authenticity_token')
+        expect(current_path).to eq root_path
+      end
     end
   end
 

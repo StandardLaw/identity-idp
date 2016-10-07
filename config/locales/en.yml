@@ -127,6 +127,7 @@ en:
   session_timeout_warning: >-
     Your session will end in <span id="countdown">%{time_left_in_session}</span> due to inactivity.
     If you’d like to continue using the site, please click the button below.
+  login_timeout_warning: Please <a href="/">refresh</a> the page to log in.
 
   titles:
     confirmations:

@@ -23,6 +23,16 @@ module SessionTimeoutWarningHelper
     end
   end
 
+  def auto_login_timeout_js
+    nonced_javascript_tag do
+      render partial: 'session_timeout/login',
+             formats: [:js],
+             locals: {
+               start: (Figaro.env.login_timeout_warning_seconds || 180).to_i
+             }
+    end
+  end
+
   def time_left_in_session
     distance_of_time_in_words(warning)
   end
